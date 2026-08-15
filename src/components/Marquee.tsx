@@ -1,51 +1,33 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
+const items = [
+  'Social Media Management',
+  'Content Production',
+  'Podcast Repurposing',
+  'Personal Branding',
+  'Art Direction',
+  'Brand Strategy',
+]
 
 export default function Marquee() {
-  const marqueeRef = useRef(null)
-  const [animationDuration, setAnimationDuration] = useState(20)
-
-  useEffect(() => {
-    if (marqueeRef.current) {
-      const width = (marqueeRef.current as HTMLElement).scrollWidth
-      setAnimationDuration(width / 50)
-    }
-  }, [])
-
-  const keywords = [
-    'Personal Branding',
-    'Podcast Production',
-    'Social Media',
-    'Content Strategy',
-    'Personal Branding',
-    'Podcast Production',
-    'Social Media',
-    'Content Strategy',
-  ]
+  // Rendered twice so the -50% translate loops seamlessly
+  const track = [...items, ...items]
 
   return (
-    <section className="bg-burgundy text-cream py-8 overflow-hidden">
-      <motion.div
-        ref={marqueeRef}
-        className="flex gap-8 whitespace-nowrap"
-        animate={{ x: [-100, -100 - 2000] }}
-        transition={{
-          duration: animationDuration,
-          repeat: Infinity,
-          ease: 'linear',
-        }}
-      >
-        {keywords.map((keyword, index) => (
-          <span
-            key={index}
-            className="text-xl md:text-3xl font-playfair font-bold flex-shrink-0 italic"
-          >
-            {keyword} ·
-          </span>
-        ))}
-      </motion.div>
-    </section>
+    <div className="block-dark overflow-hidden py-7">
+      <div className="pause-on-hover overflow-hidden">
+        <div className="flex w-max animate-marquee items-center">
+          {track.map((item, index) => (
+            <span
+              key={item + index}
+              className="flex items-center whitespace-nowrap font-display text-lg uppercase tracking-display md:text-2xl"
+            >
+              {item}
+              <span className="mx-8 inline-block h-1.5 w-1.5 rotate-45 bg-cream/50" />
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
   )
 }

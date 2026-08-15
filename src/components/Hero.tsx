@@ -1,117 +1,192 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
+import PhoneFrame from '@/components/PhoneFrame'
+
+const EASE = [0.16, 1, 0.3, 1] as const
+
+/** The last line cycles — that rotation is the hook. */
+const endings = ['blend in.', 'get scrolled.', 'look the same.', 'get forgotten.']
+
+/** Stills that auto-advance inside the hero device. Swap for real reels. */
+const reel = [
+  { image: '/KAV.JPG', label: 'On set' },
+  { image: '/image1.jpeg', label: 'Identity' },
+  { image: '/image2.jpeg', label: 'Direction' },
+]
 
 export default function Hero() {
-  const [displayedText, setDisplayedText] = useState('')
-  const fullHeadline = 'We engineer growth.'
-  const subtext = 'We don\'t create content. We engineer growth.'
+  const ref = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
+
+  const textY = useTransform(scrollYProgress, [0, 1], [0, -110])
+  const textOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0])
+  const imageY = useTransform(scrollYProgress, [0, 1], [0, 80])
+
+  const [endingIndex, setEndingIndex] = useState(0)
+  const [reelIndex, setReelIndex] = useState(0)
 
   useEffect(() => {
-    let index = 0
-    const interval = setInterval(() => {
-      if (index <= fullHeadline.length) {
-        setDisplayedText(fullHeadline.slice(0, index))
-        index++
-      } else {
-        clearInterval(interval)
-      }
-    }, 80)
+    // Honour reduced-motion: hold the first phrase instead of cycling
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-    return () => clearInterval(interval)
+    const words = setInterval(() => setEndingIndex((i) => (i + 1) % endings.length), 2600)
+    const stills = setInterval(() => setReelIndex((i) => (i + 1) % reel.length), 3200)
+    return () => {
+      clearInterval(words)
+      clearInterval(stills)
+    }
   }, [])
 
   return (
-    <section className="min-h-screen flex items-center justify-center pt-20 px-6 relative overflow-hidden">
-      {/* Floating K Icon with Sparkles */}
-      <motion.div
-        className="absolute top-32 right-10 text-6xl md:text-8xl font-playfair text-burgundy opacity-10"
-        animate={{
-          y: [0, -20, 0],
-          rotate: [-5, 5, -5],
-        }}
-        transition={{ duration: 4, repeat: Infinity }}
-      >
-        K
-      </motion.div>
+    <section
+      ref={ref}
+      className="relative overflow-hidden px-6 pb-14 pt-36 md:px-10 md:pb-20 md:pt-44"
+    >
+      {/* Words on the left, plate on the right — one row, not stacked */}
+      <div className="shell grid gap-14 md:grid-cols-12 md:items-start md:gap-10">
+        <motion.div style={{ y: textY, opacity: textOpacity }} className="md:col-span-6">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="eyebrow mb-10 flex items-center gap-3"
+          >
+            <span className="inline-block h-1.5 w-1.5 animate-pulse-dot rounded-full bg-ember" />
+            Kavora — Marketing Studio
+          </motion.p>
 
-      <div className="max-w-4xl text-center relative z-10">
-        {/* Main Headline */}
-        <motion.h1
-          className="text-5xl md:text-8xl font-playfair font-bold text-burgundy mb-6 leading-tight"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-        >
-          <span>{displayedText}</span>
-          <span className="animate-pulse">|</span>
-        </motion.h1>
+          {/* Slightly tighter clamp than .display-hero — the headline now lives
+              in a half-width column, so it has to break at the same three lines. */}
+          <h1 className="display-hero text-[clamp(2.875rem,4.5vw,4.5rem)] text-oxblood">
+            {['Brands that', 'refuse to'].map((line, index) => (
+              <span key={line} className="block overflow-hidden">
+                <motion.span
+                  className="block"
+                  initial={{ y: '105%' }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 1.1, delay: 0.2 + index * 0.12, ease: EASE }}
+                >
+                  {line}
+                </motion.span>
+              </span>
+            ))}
 
-        {/* Sparkle Accents */}
-        <motion.div
-          className="flex justify-center gap-4 mb-8 text-2xl"
-          animate={{ opacity: [0.3, 1, 0.3] }}
-          transition={{ duration: 3, repeat: Infinity }}
-        >
-          <span>★</span>
-          <span>★</span>
-          <span>★</span>
+            {/* Rotating final line. Fixed height so nothing below it jumps —
+                slightly taller than the line box so glyphs don't clip. */}
+            <span className="relative block h-[1.18em] overflow-hidden">
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.span
+                  key={endings[endingIndex]}
+                  className="block text-ember"
+                  initial={{ y: '105%' }}
+                  animate={{ y: 0 }}
+                  exit={{ y: '-105%' }}
+                  transition={{ duration: 0.75, ease: EASE }}
+                >
+                  {endings[endingIndex]}
+                </motion.span>
+              </AnimatePresence>
+            </span>
+          </h1>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.75, ease: EASE }}
+            className="mt-10"
+          >
+            <p className="body-lg max-w-[44ch]">
+              You are posting constantly and none of it compounds. We build the
+              strategy, shoot the content, and hand back a system your team can
+              actually run.
+            </p>
+            <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+              <Link href="/contact" className="btn-solid w-full sm:w-auto">
+                Work with us
+              </Link>
+              <Link
+                href="#work"
+                className="group flex items-center gap-3 font-sans text-xs font-semibold uppercase tracking-wide text-oxblood/60 transition-colors hover:text-oxblood"
+              >
+                Watch our work
+                <span className="h-px w-8 bg-oxblood/40 transition-all duration-300 group-hover:w-12 group-hover:bg-ember" />
+              </Link>
+            </div>
+          </motion.div>
         </motion.div>
 
-        {/* Subtext */}
-        <motion.p
-          className="text-lg md:text-xl text-gray-700 mb-8 max-w-2xl mx-auto leading-relaxed"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-        >
-          {subtext}
-        </motion.p>
+        <div className="relative md:col-span-6 md:col-start-7">
+          {/* Wide plate un-masks upward, then parallaxes and slowly drifts.
+              Portrait from md up so it stands level with the headline column. */}
+          <motion.div
+            initial={{ clipPath: 'inset(100% 0 0 0)' }}
+            animate={{ clipPath: 'inset(0% 0 0 0)' }}
+            transition={{ duration: 1.3, delay: 0.5, ease: EASE }}
+            className="overflow-hidden"
+          >
+            <motion.div
+              style={{ y: imageY }}
+              className="relative aspect-[5/4] w-full md:aspect-[4/5] lg:aspect-[5/5.5]"
+            >
+              <motion.div
+                className="absolute inset-0"
+                animate={{ scale: [1, 1.07, 1] }}
+                transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                <Image
+                  src="/Hero.png"
+                  alt="Kavora on set"
+                  fill
+                  priority
+                  sizes="(min-width: 768px) 45vw, 100vw"
+                  className="object-cover"
+                />
+              </motion.div>
+            </motion.div>
+          </motion.div>
 
-        {/* CTA Buttons */}
-        <motion.div
-          className="flex flex-col md:flex-row gap-4 justify-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-        >
-          <motion.button
-            className="bg-burgundy text-cream px-8 py-4 rounded-none text-lg font-semibold hover:bg-cognac transition-all"
-            whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(97, 0, 0, 0.2)' }}
-            whileTap={{ scale: 0.95 }}
+          {/* Device overlapping the plate, auto-cycling through stills */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1.1, ease: EASE }}
+            className="absolute -bottom-8 -left-4 w-32 sm:w-40 md:-left-10 md:w-40 lg:w-44"
           >
-            Book a Call
-          </motion.button>
-          <motion.button
-            className="border-2 border-burgundy text-burgundy px-8 py-4 rounded-none text-lg font-semibold hover:bg-burgundy hover:text-cream transition-all"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            See Our Work
-          </motion.button>
-        </motion.div>
+            <PhoneFrame maxWidth="100%">
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={reel[reelIndex].image}
+                  initial={{ opacity: 0, scale: 1.06 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.8, ease: 'easeInOut' }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={reel[reelIndex].image}
+                    alt=""
+                    fill
+                    sizes="11rem"
+                    className="object-cover"
+                  />
+                </motion.div>
+              </AnimatePresence>
 
-        {/* Scroll Indicator */}
-        <motion.div
-          className="mt-16 flex justify-center"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <svg
-            className="w-6 h-6 text-burgundy"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
-        </motion.div>
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-ink/30" />
+
+              <div className="absolute inset-x-0 bottom-0 z-20 flex items-center gap-2 p-3 pb-5">
+                <span className="inline-block h-1.5 w-1.5 shrink-0 animate-pulse-dot rounded-full bg-ember" />
+                <p className="truncate font-sans text-[0.5rem] font-semibold uppercase tracking-eyebrow text-cream/80">
+                  {reel[reelIndex].label}
+                </p>
+              </div>
+            </PhoneFrame>
+          </motion.div>
+        </div>
       </div>
     </section>
   )

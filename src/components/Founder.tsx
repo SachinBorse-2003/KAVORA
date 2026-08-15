@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import Image from 'next/image'
 
 export default function Founder() {
   const { ref, inView } = useInView({
@@ -52,12 +53,14 @@ export default function Founder() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative"
           >
-            {/* Placeholder for founder image - can be replaced with actual image */}
-            <div className="bg-burgundy opacity-5 aspect-square mx-auto max-w-sm rounded-none flex items-center justify-center">
-              <div className="text-center">
-                <p className="text-2xl font-playfair text-burgundy">Founder Photo</p>
-                <p className="text-gray-500">(Replace with actual image)</p>
-              </div>
+            <div className="mx-auto max-w-md overflow-hidden border border-burgundy/10 bg-[#f4ead9] shadow-[0_20px_60px_rgba(97,0,0,0.08)]">
+              <Image
+                src="/KAV.JPG"
+                alt="Kavlin, founder of Kavora"
+                width={4032}
+                height={3024}
+                className="h-full w-full object-cover"
+              />
             </div>
 
             {/* Decorative sparkles */}

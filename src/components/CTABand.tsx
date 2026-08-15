@@ -1,43 +1,41 @@
 'use client'
 
+import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { Reveal, MaskText } from '@/components/Motion'
 
 export default function CTABand() {
   return (
-    <section id="cta" className="bg-burgundy text-cream py-20 px-6">
-      <div className="max-w-4xl mx-auto text-center">
-        <motion.h2
-          className="text-4xl md:text-6xl font-playfair font-bold mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          Ready to turn content into growth?
-        </motion.h2>
+    <section className="block-dark section relative overflow-hidden">
+      {/* Slow drifting rule pair, just enough movement to feel alive */}
+      <motion.div
+        aria-hidden
+        className="absolute inset-x-0 top-1/3 h-px bg-cream/10"
+        animate={{ scaleX: [0.3, 1, 0.3] }}
+        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+      />
 
-        <motion.p
-          className="text-lg md:text-xl mb-12 leading-relaxed"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          Let's build a strategy that works.
-        </motion.p>
+      <div className="shell relative grid gap-12 md:grid-cols-12 md:items-end">
+        <div className="md:col-span-8">
+          <Reveal>
+            <p className="mb-6 font-sans text-[0.6875rem] font-semibold uppercase tracking-eyebrow text-cream/60">
+              Next step
+            </p>
+          </Reveal>
+          <MaskText text="Tell us what is not working" className="display-lg max-w-[13ch] text-cream" />
+        </div>
 
-        <motion.button
-          className="bg-cream text-burgundy px-12 py-4 text-lg font-semibold hover:bg-blush transition-all"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          viewport={{ once: true }}
-          onClick={() => window.open('https://calendly.com', '_blank')}
-        >
-          Book a Call
-        </motion.button>
+        <Reveal delay={0.2} className="md:col-span-4">
+          <div className="flex flex-col items-start gap-6 md:items-end">
+            <p className="font-sans text-base font-light leading-relaxed text-cream/70 md:text-right">
+              One conversation, no deck. We will tell you whether we are the
+              right people for it.
+            </p>
+            <Link href="/contact" className="btn-solid-invert w-full md:w-auto">
+              Work with us
+            </Link>
+          </div>
+        </Reveal>
       </div>
     </section>
   )

@@ -8,33 +8,46 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        burgundy: '#610000',
-        cognac: '#84451B',
+        // Brand pair from Kavora
+        cream: '#FFF9EE',   // primary surface
+        oxblood: '#5F0A0B', // brand red — type, dark blocks
+
+        // Derived from the pair, for depth
+        sand: '#F6EADB',    // subtle panel on cream
+        ember: '#8E1013',   // accent: hover, live indicators
+        ink: '#2A0405',     // deepest, footer
         blush: '#EFD2C2',
-        cream: '#FEF8ED',
       },
       fontFamily: {
-        'playfair': ['Playfair Display', 'serif'],
-        'inter': ['Inter', 'sans-serif'],
-        'dancing': ['Dancing Script', 'cursive'],
+        // Auralux for display, Nunito for everything read as text
+        display: ['Auralux', 'Georgia', 'serif'],
+        sans: ['Nunito', 'system-ui', 'sans-serif'],
+        gasthony: ['Gasthony Signature', 'cursive'],
+      },
+      letterSpacing: {
+        display: '0.01em',
+        eyebrow: '0.35em',
+        wide: '0.18em',
       },
       animation: {
-        'sparkle': 'sparkle 3s ease-in-out infinite',
-        'fade-up': 'fadeUp 0.6s ease-out',
-        'slide-up': 'slideUp 0.6s ease-out',
+        marquee: 'marquee 40s linear infinite',
+        'marquee-slow': 'marquee 70s linear infinite',
+        'marquee-reverse': 'marqueeReverse 55s linear infinite',
+        'pulse-dot': 'pulseDot 2s ease-in-out infinite',
+        'spin-slow': 'spin 22s linear infinite',
       },
       keyframes: {
-        sparkle: {
-          '0%, 100%': { opacity: '0.3' },
-          '50%': { opacity: '1' },
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-50%)' },
         },
-        fadeUp: {
-          from: { opacity: '0', transform: 'translateY(20px)' },
-          to: { opacity: '1', transform: 'translateY(0)' },
+        marqueeReverse: {
+          from: { transform: 'translateX(-50%)' },
+          to: { transform: 'translateX(0)' },
         },
-        slideUp: {
-          from: { opacity: '0', transform: 'translateY(40px)' },
-          to: { opacity: '1', transform: 'translateY(0)' },
+        pulseDot: {
+          '0%, 100%': { opacity: '1', transform: 'scale(1)' },
+          '50%': { opacity: '0.35', transform: 'scale(0.8)' },
         },
       },
     },

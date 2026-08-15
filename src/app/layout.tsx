@@ -3,7 +3,12 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Kavora | Creative Content & Growth Agency',
-  description: 'We engineer growth through premium content strategy, production, and personal branding.',
+  description:
+    'Kavora builds content systems for brands that refuse to blend in. Strategy, production, and distribution under one roof.',
+  icons: {
+    icon: '/k icon final.png',
+    apple: '/k icon final.png',
+  },
 }
 
 export default function RootLayout({
@@ -13,10 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' font-weight='bold' fill='%23610000'>K</text></svg>" />
-      </head>
-      <body className="bg-cream text-gray-900 font-inter">
+      <body className="bg-cream font-sans text-oxblood antialiased">
         {children}
       </body>
     </html>

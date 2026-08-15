@@ -1,4 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap');
+
+/* Display face — the logo's own typeface. Single weight; never synthesise bold. */
+@font-face {
+  font-family: 'Auralux';
+  src: url('/auralux/Auralux.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Signature only — used once, on the founder's name */
+@font-face {
+  font-family: 'Gasthony Signature';
+  src: url('/gasthony-signature-font/GasthonySignature-L3Pnn.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 @tailwind base;
 @tailwind components;
@@ -6,11 +24,16 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: #FFF9EE;
 }
 
 body {
-  background-color: #FEF8ED;
-  color: #333;
+  background-color: #FFF9EE;
+  color: #5F0A0B;
+  font-family: 'Nunito', system-ui, sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 * {
@@ -19,71 +42,142 @@ body {
   box-sizing: border-box;
 }
 
-/* Custom scrollbar */
+::selection {
+  background: #5F0A0B;
+  color: #FFF9EE;
+}
+
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #FEF8ED;
+  background: #F6EADB;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #610000;
-  border-radius: 4px;
+  background: #5F0A0B;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #84451B;
+  background: #8E1013;
 }
 
-/* Letter-by-letter animation */
-@keyframes letterFadeUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
+@layer components {
+  /*
+   * Auralux at large sizes with normal weight — "thin" comes from the
+   * typeface's own strokes, so we never bold it and never let the browser
+   * synthesise a heavier cut.
+   */
+  .display {
+    @apply font-display font-normal uppercase leading-[0.9] tracking-display;
+    font-synthesis: none;
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
+
+  .display-xl {
+    @apply display text-[clamp(3rem,11vw,10rem)];
+  }
+
+  /*
+   * Hero headline. Auralux has a single weight, so "thinner" has to come from
+   * size and tracking rather than font-weight — opening the letter-spacing and
+   * dropping the size is what makes the strokes read light.
+   */
+  .display-hero {
+    @apply font-display font-normal uppercase leading-[1.02];
+    font-synthesis: none;
+    font-size: clamp(2rem, 6vw, 5rem);
+    letter-spacing: 0.05em;
+  }
+
+  .display-lg {
+    @apply display text-[clamp(2.5rem,7vw,6rem)];
+  }
+
+  .display-md {
+    @apply display text-[clamp(1.875rem,4vw,3.5rem)];
+  }
+
+  /* Auralux reads badly below ~24px, so small headings stay in Nunito */
+  .heading-sm {
+    @apply font-sans text-xl font-normal leading-snug;
+  }
+
+  .eyebrow {
+    @apply font-sans text-[0.6875rem] font-semibold uppercase tracking-eyebrow text-ember;
+  }
+
+  .body-lg {
+    @apply font-sans text-lg font-light leading-relaxed text-oxblood/75 md:text-xl;
+  }
+
+  .body {
+    @apply font-sans text-base font-light leading-relaxed text-oxblood/65;
+  }
+
+  .rule {
+    @apply border-t border-oxblood/15;
+  }
+
+  .btn-solid {
+    @apply inline-flex items-center justify-center gap-3 bg-oxblood px-8 py-4
+           font-sans text-xs font-semibold uppercase tracking-wide text-cream
+           transition-colors duration-300 hover:bg-ember;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-3 border border-oxblood/30 px-8 py-4
+           font-sans text-xs font-semibold uppercase tracking-wide text-oxblood
+           transition-colors duration-300 hover:bg-oxblood hover:text-cream;
+  }
+
+  /* Same buttons, on the dark red blocks */
+  .btn-solid-invert {
+    @apply inline-flex items-center justify-center gap-3 bg-cream px-8 py-4
+           font-sans text-xs font-semibold uppercase tracking-wide text-oxblood
+           transition-colors duration-300 hover:bg-blush;
+  }
+
+  .section {
+    @apply px-6 py-24 md:px-10 md:py-32;
+  }
+
+  .shell {
+    @apply mx-auto w-full max-w-[1400px];
+  }
+
+  /* Dark red punctuation block on the cream page */
+  .block-dark {
+    @apply bg-oxblood text-cream;
   }
 }
 
-.letter {
-  display: inline-block;
-  animation: letterFadeUp 0.5s ease-out forwards;
-}
-
-/* Smooth transitions */
-button, a {
-  transition: all 0.3s ease;
-}
-
-/* Floating icon */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px) rotate(-5deg);
+@layer utilities {
+  .mask-edges {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
   }
-  50% {
-    transform: translateY(-20px) rotate(5deg);
+
+  .pause-on-hover:hover * {
+    animation-play-state: paused;
+  }
+
+  /* Text that wipes up from behind a mask, one line at a time */
+  .clip-reveal {
+    clip-path: inset(0 0 0 0);
   }
 }
 
-.float-icon {
-  animation: float 4s ease-in-out infinite;
-}
-
-/* Hover lift effect */
-@keyframes lift {
-  0%, 100% {
-    transform: translateY(0);
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
-  50% {
-    transform: translateY(-10px);
-  }
-}
 
-.hover-lift:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(97, 0, 0, 0.15);
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
