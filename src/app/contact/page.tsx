@@ -26,19 +26,24 @@ export default function ContactPage() {
 
       <main className="overflow-x-hidden">
         {/* Header */}
-        <section className="px-6 pb-16 pt-40 md:px-10 md:pb-24 md:pt-48">
-          <div className="shell">
-            <p className="eyebrow mb-4">Contact</p>
-            <h1 className="display-xl max-w-[12ch] text-oxblood">Work with us</h1>
-            <div className="rule mt-10 grid gap-8 pt-8 md:grid-cols-12">
-              <p className="body-lg md:col-span-5">
+        {/* Compact header: title and copy on the left, the details block on the
+            right, one row — no full-width rule band, no oversized display type */}
+        <section className="px-6 pb-12 pt-32 md:px-10 md:pb-16 md:pt-36">
+          <div className="shell grid gap-10 md:grid-cols-12 md:items-end">
+            <div className="md:col-span-6">
+              <p className="eyebrow mb-3">Contact</p>
+              <h1 className="display-md max-w-[14ch] text-oxblood">Work with us</h1>
+              <p className="body mt-5 max-w-[44ch]">
                 Pick a time and talk it through, or write it down and we will
                 come back to you within two working days.
               </p>
-              <dl className="grid gap-8 sm:grid-cols-3 md:col-span-6 md:col-start-7">
+            </div>
+
+            <div className="md:col-span-5 md:col-start-8">
+              <dl className="rule grid gap-x-8 gap-y-5 pt-6 sm:grid-cols-2">
                 {details.map((detail) => (
                   <div key={detail.label}>
-                    <dt className="mb-2 text-[0.625rem] uppercase tracking-eyebrow text-oxblood/50">
+                    <dt className="mb-1 text-[0.625rem] uppercase tracking-eyebrow text-oxblood/50">
                       {detail.label}
                     </dt>
                     <dd className="text-sm font-light text-oxblood">
@@ -58,9 +63,9 @@ export default function ContactPage() {
                   </div>
                 ))}
               </dl>
-            </div>
 
-            <SocialLinks className="mt-10" />
+              <SocialLinks className="mt-6" />
+            </div>
           </div>
         </section>
 

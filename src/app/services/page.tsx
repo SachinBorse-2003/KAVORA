@@ -25,8 +25,7 @@ export default function ServicesPage() {
             <Reveal>
               <p className="eyebrow mb-4">Collaborate</p>
             </Reveal>
-            <MaskText as="h1" text="Our services" className="display-xl text-oxblood" />
-
+            
             <div className="rule mt-10 grid gap-10 pt-8 md:grid-cols-12">
               <Reveal className="md:col-span-6">
                 <p className="body-lg max-w-[46ch]">
@@ -121,7 +120,7 @@ export default function ServicesPage() {
           <div className="shell grid gap-10 md:grid-cols-12 md:items-end">
             <div className="md:col-span-7">
               <p className="eyebrow mb-4">Portfolio</p>
-              <h2 className="display-md mb-4 text-oxblood">See it applied</h2>
+              <h2 className=" mb-4 text-oxblood">See it applied</h2>
               <p className="body max-w-[44ch]">
                 Every project in the portfolio came out of one or more of these
                 four. Open one to see which.

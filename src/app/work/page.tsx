@@ -33,8 +33,7 @@ export default function WorkPage() {
             <Reveal>
               <p className="eyebrow mb-4">Portfolio</p>
             </Reveal>
-            <MaskText as="h1" text="Selected work" className="display-xl text-oxblood" />
-
+            
             <div className="rule mt-10 grid gap-10 pt-8 md:grid-cols-12">
               <Reveal className="md:col-span-6">
                 <p className="body-lg max-w-[46ch]">
