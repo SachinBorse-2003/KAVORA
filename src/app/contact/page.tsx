@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 const details = [
   { label: 'Email', value: contact.email, href: `mailto:${contact.email}` },
   { label: 'Instagram', value: contact.instagramHandle, href: contact.instagram },
-  { label: 'Based in', value: contact.address },
+  // Short form — this cell is one of three in a narrow row
+  { label: 'Based in', value: contact.addressShort },
 ]
 
 export default function ContactPage() {

@@ -24,7 +24,7 @@ export default function AboutPage() {
             <Reveal>
               <p className="eyebrow mb-4">About</p>
             </Reveal>
-            <MaskText as="h1" text="Who you work with" className="display-xl text-oxblood" />
+            <MaskText as="h1" text="Who you work with" className=" text-oxblood" />
 
             <div className="rule mt-10 grid gap-10 pt-8 md:grid-cols-12">
               <Reveal className="md:col-span-6">

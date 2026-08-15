@@ -301,10 +301,10 @@ export const contact = {
   calLink: 'kavora.in/30min',
   calNamespace: '30min',
   calendarUrl: 'https://cal.com/kavora.in/30min',
-  /**
-   * TODO: the drive folder has no address. This is a country-level placeholder
-   * and the map embed matches it — both must be set before launch.
-   */
-  address: 'India',
-  mapEmbedUrl: 'https://www.google.com/maps?q=India&output=embed',
+  /** Studio address, confirmed by Kavora. The map embed queries the same string. */
+  address: 'Behind Durga Mandir, near Power House, Raipur Road, Dhamtari, Chhattisgarh 493773',
+  /** Short form for tight spots like the footer. */
+  addressShort: 'Dhamtari, Chhattisgarh',
+  mapEmbedUrl:
+    'https://www.google.com/maps?q=Behind%20Durga%20Mandir%2C%20near%20Power%20House%2C%20Raipur%20Road%2C%20Dhamtari%2C%20Chhattisgarh%20493773&output=embed',
 }
