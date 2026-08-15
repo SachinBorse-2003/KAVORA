@@ -1,8 +1,10 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { Reveal, MaskText } from '@/components/Motion'
+import { Reveal, MaskText, ParallaxImage } from '@/components/Motion'
 import { services } from '@/content/site'
 
 export default function Services() {
@@ -11,19 +13,21 @@ export default function Services() {
   return (
     <section id="services" className="section">
       <div className="shell">
-        <div className="mb-12 grid gap-8 md:grid-cols-12 md:items-end">
-          <div className="md:col-span-7">
+        {/* items-center, not items-end: the grid row is as tall as the photo, so
+            end-alignment dropped the text to the bottom and left a hole above it */}
+        <div className="mb-12 grid gap-10 md:grid-cols-12 md:items-center">
+          <div className="md:col-span-6">
             <Reveal>
               <p className="eyebrow mb-4">What we do</p>
             </Reveal>
-            <MaskText text="Four ways in. One system out." className="display-lg text-oxblood" />
+            <MaskText text="Four ways in. One system out." className="text-oxblood" />
+            <Reveal delay={0.15}>
+              <p className="body mt-8 max-w-[42ch]">
+                Take one or take all four. They are built to stack — the strategy
+                from one feeds the shoot list of the next.
+              </p>
+            </Reveal>
           </div>
-          <Reveal delay={0.15} className="md:col-span-4 md:col-start-9">
-            <p className="body">
-              Take one or take all four. They are built to stack — the strategy
-              from one feeds the shoot list of the next.
-            </p>
-          </Reveal>
         </div>
 
         <div className="relative rule">
@@ -85,8 +89,18 @@ export default function Services() {
               </ul>
             </motion.div>
           ))}
-
         </div>
+
+        {/* The homepage carries the summary; /services carries the detail */}
+        <Reveal>
+          <Link
+            href="/services"
+            className="group mt-12 inline-flex items-center gap-3 font-sans text-xs font-semibold uppercase tracking-wide text-oxblood/60 transition-colors hover:text-oxblood"
+          >
+            All four services in detail
+            <span className="h-px w-8 bg-oxblood/40 transition-all duration-300 group-hover:w-12 group-hover:bg-ember" />
+          </Link>
+        </Reveal>
       </div>
     </section>
   )

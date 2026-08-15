@@ -17,12 +17,12 @@ type NavItem = NavLink & { children?: NavLink[] }
  */
 const links: NavItem[] = [
   { label: 'Home', href: '/' },
-  { label: 'About', href: '/#studio' },
+  { label: 'About', href: '/about' },
   {
     label: 'Collaborate',
     href: '/work',
     children: [
-      { label: 'Our Services', href: '/#services' },
+      { label: 'Our Services', href: '/services' },
       { label: 'Portfolio', href: '/work' },
     ],
   },
@@ -79,7 +79,7 @@ export default function Navigation() {
               src={isOpen ? '/brand/kavora-wordmark-cream.png' : '/brand/kavora-wordmark-oxblood.png'}
               alt="Kavora"
               width={1000}
-              height={315}
+              height={249}
               className="h-7 w-auto object-contain md:h-8"
               priority
             />

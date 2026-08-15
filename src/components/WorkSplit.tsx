@@ -31,7 +31,7 @@ const halves: Half[] = [
     items: services.map((service) => service.title),
     image: '/KAV.JPG',
     cta: 'Explore services',
-    href: '/#services',
+    href: '/services',
   },
   {
     number: '02',

@@ -4,19 +4,11 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
-import PhoneFrame from '@/components/PhoneFrame'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
 /** The last line cycles — that rotation is the hook. */
 const endings = ['blend in.', 'get scrolled.', 'look the same.', 'get forgotten.']
-
-/** Stills that auto-advance inside the hero device. Swap for real reels. */
-const reel = [
-  { image: '/KAV.JPG', label: 'On set' },
-  { image: '/image1.jpeg', label: 'Identity' },
-  { image: '/image2.jpeg', label: 'Direction' },
-]
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null)
@@ -27,18 +19,13 @@ export default function Hero() {
   const imageY = useTransform(scrollYProgress, [0, 1], [0, 80])
 
   const [endingIndex, setEndingIndex] = useState(0)
-  const [reelIndex, setReelIndex] = useState(0)
 
   useEffect(() => {
     // Honour reduced-motion: hold the first phrase instead of cycling
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
     const words = setInterval(() => setEndingIndex((i) => (i + 1) % endings.length), 2600)
-    const stills = setInterval(() => setReelIndex((i) => (i + 1) % reel.length), 3200)
-    return () => {
-      clearInterval(words)
-      clearInterval(stills)
-    }
+    return () => clearInterval(words)
   }, [])
 
   return (
@@ -53,9 +40,8 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="eyebrow mb-10 flex items-center gap-3"
+            className="eyebrow mb-10"
           >
-            <span className="inline-block h-1.5 w-1.5 animate-pulse-dot rounded-full bg-ember" />
             Kavora — Marketing Studio
           </motion.p>
 
@@ -109,7 +95,7 @@ export default function Hero() {
                 Work with us
               </Link>
               <Link
-                href="#work"
+                href="/work"
                 className="group flex items-center gap-3 font-sans text-xs font-semibold uppercase tracking-wide text-oxblood/60 transition-colors hover:text-oxblood"
               >
                 Watch our work
@@ -149,43 +135,6 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Device overlapping the plate, auto-cycling through stills */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.1, ease: EASE }}
-            className="absolute -bottom-8 -left-4 w-32 sm:w-40 md:-left-10 md:w-40 lg:w-44"
-          >
-            <PhoneFrame maxWidth="100%">
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.div
-                  key={reel[reelIndex].image}
-                  initial={{ opacity: 0, scale: 1.06 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.8, ease: 'easeInOut' }}
-                  className="absolute inset-0"
-                >
-                  <Image
-                    src={reel[reelIndex].image}
-                    alt=""
-                    fill
-                    sizes="11rem"
-                    className="object-cover"
-                  />
-                </motion.div>
-              </AnimatePresence>
-
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-ink/30" />
-
-              <div className="absolute inset-x-0 bottom-0 z-20 flex items-center gap-2 p-3 pb-5">
-                <span className="inline-block h-1.5 w-1.5 shrink-0 animate-pulse-dot rounded-full bg-ember" />
-                <p className="truncate font-sans text-[0.5rem] font-semibold uppercase tracking-eyebrow text-cream/80">
-                  {reel[reelIndex].label}
-                </p>
-              </div>
-            </PhoneFrame>
-          </motion.div>
         </div>
       </div>
     </section>

@@ -1,9 +1,9 @@
 /**
  * Single source of truth for site copy.
  *
- * PLACEHOLDER CONTENT: project details and Instagram posts are stand-ins with
- * the right shape. Swap the values as Kavora delivers the real assets — no
- * component changes required. Testimonials below are real.
+ * PLACEHOLDER CONTENT: the project case-study copy (challenge/approach/result)
+ * is a stand-in with the right shape. Swap the values as Kavora delivers the
+ * real details — no component changes required. Testimonials and reels are real.
  */
 
 /**
@@ -160,8 +160,15 @@ export const projects: Project[] = [
 export type Service = {
   number: string
   title: string
+  /** One line. Used on the homepage list. */
   description: string
   points: string[]
+  /** Longer version, /services only. NEW COPY — review before launch. */
+  detail: string
+  /** What the client actually receives. /services only. */
+  deliverables: string[]
+  /** Section image on /services. */
+  image: string
 }
 
 export const services: Service[] = [
@@ -171,6 +178,10 @@ export const services: Service[] = [
     description:
       'Strategy, calendar, and publishing — owned end to end, so the feed stops depending on whoever has time this week.',
     points: ['Content pillars', 'Monthly calendar', 'Publishing & community'],
+    detail:
+      'We take the whole channel off your desk. That starts with deciding what the account is actually for, turns into a set of recurring pillars, and ends with a calendar somebody is accountable for. You approve once a month instead of scrambling every Monday.',
+    deliverables: ['Channel audit', 'Content pillars', 'Monthly calendar', 'Publishing & community'],
+    image: '/image2.jpeg',
   },
   {
     number: '02',
@@ -178,6 +189,10 @@ export const services: Service[] = [
     description:
       'Films, reels, and stills shot to a plan. We travel to you, or hand you a shot list precise enough to shoot it yourself.',
     points: ['Direction', 'On-location shoots', 'Editing & post'],
+    detail:
+      'Every shoot is designed backwards from what it has to fill — the hero film, the verticals, the stills, all planned into the same setups. One production day should cover weeks of calendar, not one post.',
+    deliverables: ['Concept & direction', 'Shot list', 'On-location shoot', 'Editing & post'],
+    image: '/image1.jpeg',
   },
   {
     number: '03',
@@ -185,6 +200,10 @@ export const services: Service[] = [
     description:
       'Full post-production plus a repurposing pipeline that turns one recording into a month of short-form.',
     points: ['Post-production', 'Clip extraction', 'Captions & graphics'],
+    detail:
+      'The episode is the raw material, not the deliverable. We cut the full show and pull the hooks at the edit stage — while the timeline is still open — so the short-form ships with the episode rather than months later.',
+    deliverables: ['Full-episode edit', 'Clip extraction', 'Captions & graphics', 'Scheduling'],
+    image: '/KAV.JPG',
   },
   {
     number: '04',
@@ -192,6 +211,10 @@ export const services: Service[] = [
     description:
       'For founders who are the most persuasive asset the company has, and the least consistently used one.',
     points: ['Positioning', 'Studio days', 'Weekly cadence'],
+    detail:
+      'You already have the sharpest opinions in your category. What is missing is a consistent place to put them. We set the positioning, run a monthly studio day, and cut it into a weekly rhythm you can actually sustain.',
+    deliverables: ['Positioning', 'Monthly studio day', 'Weekly cadence', 'Distribution'],
+    image: '/Hero.png',
   },
 ]
 
@@ -237,22 +260,6 @@ export const testimonials: Testimonial[] = [
       'Working with Kavora has been a truly soulful experience. She beautifully understood the words and expressed them through thoughtful visuals, making every message feel clear, meaningful, and beautifully connected. We appreciate the depth, sincerity, and spiritual warmth she brought to our work.',
     name: 'Manish Baradiya',
   },
-]
-
-export type InstagramPost = {
-  image: string
-  caption: string
-  href: string
-}
-
-export const instagramPosts: InstagramPost[] = [
-  { image: '/KAV.JPG', caption: 'Behind the frame', href: 'https://instagram.com/kavora.in' },
-  { image: '/brand identity kavora.png', caption: 'Identity system', href: 'https://instagram.com/kavora.in' },
-  { image: '/new logo-1.png', caption: 'Studio day', href: 'https://instagram.com/kavora.in' },
-  { image: '/new logo-3.png', caption: 'On location', href: 'https://instagram.com/kavora.in' },
-  { image: '/new logo-4.png', caption: 'Cut and colour', href: 'https://instagram.com/kavora.in' },
-  { image: '/new logo-5.png', caption: 'Set notes', href: 'https://instagram.com/kavora.in' },
-  { image: '/Hero.png', caption: 'The team', href: 'https://instagram.com/kavora.in' },
 ]
 
 export const differentiators = [

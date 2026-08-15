@@ -96,7 +96,7 @@ export default function WorkPage() {
                 ))}
               </ul>
 
-              <Link href="/#services" className="btn-ghost">
+              <Link href="/services" className="btn-ghost">
                 See our services
               </Link>
             </div>

@@ -5,10 +5,11 @@ import Image from 'next/image'
 import { contact } from '@/content/site'
 import { SocialIcon, socials } from '@/components/SocialIcons'
 
+// Mirrors the header: the two folders flattened, plus About
 const navLinks = [
-  { label: 'Work', href: '/#work' },
-  { label: 'Services', href: '/#services' },
-  { label: 'Studio', href: '/#studio' },
+  { label: 'Our Services', href: '/services' },
+  { label: 'Portfolio', href: '/work' },
+  { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ]
 
@@ -24,7 +25,7 @@ export default function Footer() {
               src="/brand/kavora-wordmark-cream.png"
               alt="Kavora"
               width={1000}
-              height={315}
+              height={249}
               className="mb-8 h-10 w-auto object-contain"
             />
             <p className="max-w-sm font-sans text-base font-light leading-relaxed text-cream/65">
