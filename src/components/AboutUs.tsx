@@ -32,7 +32,7 @@ export default function AboutUs() {
             <Reveal>
               <p className="eyebrow mb-4">The studio</p>
             </Reveal>
-            <MaskText text="Small team. Short distance." className="display-lg mb-8 text-oxblood" />
+            <MaskText text="Small team. Short distance." className=" mb-8 text-oxblood" />
 
             <Reveal delay={0.15}>
               <p className="body-lg mb-6">
