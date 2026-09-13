@@ -14,16 +14,16 @@ export default function Marquee() {
   const track = [...items, ...items]
 
   return (
-    <div className="block-dark overflow-hidden py-7">
+    <div className="block-maroon overflow-hidden border-y border-gold/40 py-6">
       <div className="pause-on-hover overflow-hidden">
         <div className="flex w-max animate-marquee items-center">
           {track.map((item, index) => (
             <span
               key={item + index}
-              className="flex items-center whitespace-nowrap font-display text-lg uppercase tracking-display md:text-2xl"
+              className="flex items-center whitespace-nowrap font-sans text-sm font-medium uppercase tracking-eyebrow md:text-base"
             >
               {item}
-              <span className="mx-8 inline-block h-1.5 w-1.5 rotate-45 bg-cream/50" />
+              <span className="mx-8 inline-block h-1.5 w-1.5 rotate-45 bg-gold" />
             </span>
           ))}
         </div>

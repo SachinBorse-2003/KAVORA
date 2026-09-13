@@ -20,7 +20,7 @@ export default function Services() {
             <Reveal>
               <p className="eyebrow mb-4">What we do</p>
             </Reveal>
-            <MaskText text="Four ways in. One system out." className="text-oxblood" />
+            <MaskText text="Four ways in. One system out." className="font-display font-semibold text-cream" />
             <Reveal delay={0.15}>
               <p className="body mt-8 max-w-[42ch]">
                 Take one or take all four. They are built to stack — the strategy
@@ -40,36 +40,34 @@ export default function Services() {
               transition={{ duration: 0.7, delay: index * 0.06 }}
               onMouseEnter={() => setHovered(index)}
               onMouseLeave={() => setHovered(null)}
-              className="group relative grid cursor-default gap-5 overflow-hidden border-b border-oxblood/15 py-10 md:grid-cols-12 md:items-baseline md:gap-8"
+              className="group relative grid cursor-default gap-5 overflow-hidden border-b border-cream/15 py-10 md:grid-cols-12 md:items-baseline md:gap-8"
             >
-              {/* Dark red fills the row from the left on hover */}
+              {/* Maroon fills the row from the left on hover */}
               <motion.span
                 aria-hidden
-                className="pointer-events-none absolute inset-0 origin-left bg-oxblood"
+                className="pointer-events-none absolute inset-0 origin-left bg-maroon"
                 initial={false}
                 animate={{ scaleX: hovered === index ? 1 : 0 }}
                 transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
               />
 
               <p
-                className={`relative font-sans text-xs font-semibold tracking-wide transition-colors duration-300 md:col-span-1 ${
-                  hovered === index ? 'text-cream/60' : 'text-ember'
-                }`}
+                className="stat relative text-sm md:col-span-1"
               >
                 {service.number}
               </p>
 
               <h3
                 className={`display-md relative transition-all duration-500 md:col-span-5 ${
-                  hovered === index ? 'translate-x-3 text-cream' : 'text-oxblood'
+                  hovered === index ? 'translate-x-3 text-cream' : 'text-cream'
                 }`}
               >
                 {service.title}
               </h3>
 
               <p
-                className={`relative font-sans text-base font-light leading-relaxed transition-colors duration-300 md:col-span-4 ${
-                  hovered === index ? 'text-cream/75' : 'text-oxblood/65'
+                className={`relative font-serif text-base leading-relaxed transition-colors duration-300 md:col-span-4 ${
+                  hovered === index ? 'text-cream/80' : 'text-cream/70'
                 }`}
               >
                 {service.description}
@@ -80,7 +78,7 @@ export default function Services() {
                   <li
                     key={point}
                     className={`font-sans text-[0.6875rem] uppercase tracking-wide transition-colors duration-300 ${
-                      hovered === index ? 'text-cream/60' : 'text-oxblood/45'
+                      hovered === index ? 'text-cream/70' : 'text-cream/50'
                     }`}
                   >
                     {point}
@@ -95,10 +93,10 @@ export default function Services() {
         <Reveal>
           <Link
             href="/services"
-            className="group mt-12 inline-flex items-center gap-3 font-sans text-xs font-semibold uppercase tracking-wide text-oxblood/60 transition-colors hover:text-oxblood"
+            className="group mt-12 inline-flex items-center gap-3 font-sans text-xs font-semibold uppercase tracking-wide text-cream/70 transition-colors hover:text-cream"
           >
             All four services in detail
-            <span className="h-px w-8 bg-oxblood/40 transition-all duration-300 group-hover:w-12 group-hover:bg-ember" />
+            <span className="h-px w-8 bg-gold/60 transition-all duration-300 group-hover:w-12 group-hover:bg-gold" />
           </Link>
         </Reveal>
       </div>

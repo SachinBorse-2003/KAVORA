@@ -71,16 +71,16 @@ function ProjectThumbnail({
           }`}
         />
 
-        {/* Dark red veil lifts on hover */}
+        {/* Maroon veil lifts on hover */}
         <motion.div
           aria-hidden
-          className="absolute inset-0 bg-oxblood"
+          className="absolute inset-0 bg-maroon"
           initial={false}
           animate={{ opacity: isActive ? 0.15 : 0.5 }}
           whileHover={{ opacity: 0.2 }}
           transition={{ duration: 0.45 }}
         />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-ink/40" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-choco/90 via-transparent to-choco/40" />
 
         {/* Expand toggle, clear of the dynamic island */}
         <span
@@ -89,10 +89,10 @@ function ProjectThumbnail({
           }`}
         >
           <span className="relative block h-px w-3">
-            <span className={`absolute inset-0 block h-px w-3 ${isActive ? 'bg-oxblood' : 'bg-cream'}`} />
+            <span className={`absolute inset-0 block h-px w-3 ${isActive ? 'bg-maroon' : 'bg-cream'}`} />
             <span
               className={`absolute inset-0 block h-px w-3 transition-transform duration-300 ${
-                isActive ? 'rotate-0 bg-oxblood' : 'rotate-90 bg-cream'
+                isActive ? 'rotate-0 bg-maroon' : 'rotate-90 bg-cream'
               }`}
             />
           </span>
@@ -103,7 +103,7 @@ function ProjectThumbnail({
           <p className="mb-1.5 font-sans text-[0.5625rem] font-semibold uppercase tracking-eyebrow text-cream/70">
             {project.category}
           </p>
-          <h3 className="font-display text-base uppercase leading-tight tracking-display text-cream">
+          <h3 className="font-display text-base font-semibold leading-tight text-cream">
             {project.title}
           </h3>
         </div>
@@ -122,7 +122,8 @@ function ProjectDetail({ project, onClose }: { project: Project; onClose: () => 
       transition={{ duration: 0.55, ease: EASE }}
       className="col-span-full overflow-hidden"
     >
-      <div className="block-dark p-6 md:p-10">
+      {/* Schokobraun panel — the grid itself sits on maroon */}
+      <div className="bg-choco p-6 text-cream md:p-10">
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-5">
             {/* Vertical media, so the reel plays in the device it was cut for */}
@@ -147,7 +148,7 @@ function ProjectDetail({ project, onClose }: { project: Project; onClose: () => 
                       sizes="17rem"
                       className="object-cover opacity-80"
                     />
-                    <div className="absolute inset-0 flex items-end bg-gradient-to-t from-ink/85 to-transparent p-5 pb-7">
+                    <div className="absolute inset-0 flex items-end bg-gradient-to-t from-choco/85 to-transparent p-5 pb-7">
                       <p className="font-sans text-[0.625rem] uppercase tracking-wide text-cream/60">
                         Film coming soon
                       </p>
@@ -167,7 +168,7 @@ function ProjectDetail({ project, onClose }: { project: Project; onClose: () => 
                   <p className="mb-1 font-sans text-[0.625rem] uppercase tracking-wide text-cream/45">
                     {meta.label}
                   </p>
-                  <p className="font-sans text-sm font-light text-cream">{meta.value}</p>
+                  <p className="font-serif text-sm text-cream">{meta.value}</p>
                 </div>
               ))}
             </div>
@@ -181,7 +182,7 @@ function ProjectDetail({ project, onClose }: { project: Project; onClose: () => 
                 type="button"
                 onClick={onClose}
                 aria-label="Close project details"
-                className="mt-1 shrink-0 border border-cream/30 p-2.5 text-cream/70 transition-colors hover:bg-cream hover:text-oxblood"
+                className="mt-1 shrink-0 border border-cream/30 p-2.5 text-cream/70 transition-colors hover:bg-cream hover:text-maroon"
               >
                 <svg className="h-3.5 w-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <path d="M1 1l12 12M13 1L1 13" />
@@ -205,7 +206,7 @@ function ProjectDetail({ project, onClose }: { project: Project; onClose: () => 
                   <dt className="mb-2 font-sans text-[0.625rem] font-semibold uppercase tracking-eyebrow text-cream/60">
                     {item.term}
                   </dt>
-                  <dd className="font-sans text-sm font-light leading-relaxed text-cream/85">
+                  <dd className="font-serif text-base leading-relaxed text-cream/85">
                     {item.detail}
                   </dd>
                 </motion.div>
@@ -272,12 +273,12 @@ export default function WorkGrid() {
               }}
               aria-pressed={isCurrent}
               className={`relative pb-1 font-sans text-[0.6875rem] font-semibold uppercase tracking-eyebrow transition-colors duration-300 ${
-                isCurrent ? 'text-oxblood' : 'text-oxblood/45 hover:text-ember'
+                isCurrent ? 'text-cream' : 'text-cream/55 hover:text-cream'
               }`}
             >
               {category}
               <span
-                className={`absolute inset-x-0 bottom-0 h-px origin-left bg-oxblood transition-transform duration-300 ${
+                className={`absolute inset-x-0 bottom-0 h-px origin-left bg-gold transition-transform duration-300 ${
                   isCurrent ? 'scale-x-100' : 'scale-x-0'
                 }`}
               />
@@ -285,7 +286,7 @@ export default function WorkGrid() {
           )
         })}
 
-        <span className="ml-auto font-sans text-[0.6875rem] uppercase tracking-eyebrow text-oxblood/40">
+        <span className="ml-auto font-sans text-[0.6875rem] uppercase tracking-eyebrow text-cream/55">
           {String(visible.length).padStart(2, '0')} projects
         </span>
       </div>

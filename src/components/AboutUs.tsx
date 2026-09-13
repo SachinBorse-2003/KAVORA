@@ -11,7 +11,7 @@ const stats = [
 
 export default function AboutUs() {
   return (
-    <section id="studio" className="section bg-sand">
+    <section id="studio" className="section rule">
       <div className="shell">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
@@ -32,7 +32,7 @@ export default function AboutUs() {
             <Reveal>
               <p className="eyebrow mb-4">The studio</p>
             </Reveal>
-            <MaskText text="Small team. Short distance." className=" mb-8 text-oxblood" />
+            <MaskText text="Small team. Short distance." className="mb-8 font-display font-semibold text-cream" />
 
             <Reveal delay={0.15}>
               <p className="body-lg mb-6">
@@ -52,10 +52,10 @@ export default function AboutUs() {
             <div className="rule grid grid-cols-1 gap-8 pt-10 sm:grid-cols-3">
               {stats.map((stat, index) => (
                 <Reveal key={stat.value} delay={index * 0.1}>
-                  <p className="mb-2 font-display text-4xl uppercase tracking-display text-oxblood md:text-5xl">
+                  <p className="stat mb-2 text-4xl md:text-5xl">
                     {stat.value}
                   </p>
-                  <p className="font-sans text-[0.6875rem] uppercase tracking-wide text-oxblood/50">
+                  <p className="font-sans text-[0.6875rem] uppercase tracking-wide text-cream/55">
                     {stat.label}
                   </p>
                 </Reveal>
@@ -64,8 +64,8 @@ export default function AboutUs() {
 
             <Reveal delay={0.2}>
               <div className="mt-12">
-                <p className="font-gasthony text-5xl text-ember">Kavlin</p>
-                <p className="mt-1 font-sans text-[0.6875rem] uppercase tracking-wide text-oxblood/50">
+                <p className="quote text-4xl text-cream">Kavlin</p>
+                <p className="mt-1 font-sans text-[0.6875rem] uppercase tracking-wide text-cream/55">
                   Founder, Kavora
                 </p>
               </div>

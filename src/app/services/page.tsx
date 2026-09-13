@@ -40,15 +40,15 @@ export default function ServicesPage() {
                 <ul>
                   {services.map((service, index) => (
                     <Reveal key={service.number} delay={0.08 * index}>
-                      <li className="border-b border-oxblood/15 first:border-t first:border-oxblood/15">
+                      <li className="border-b border-cream/15 first:border-t first:border-cream/15">
                         <a
                           href={`#service-${service.number}`}
-                          className="group flex items-baseline gap-5 py-3.5 transition-colors hover:text-ember"
+                          className="group flex items-baseline gap-5 py-3.5 transition-colors"
                         >
-                          <span className="font-sans text-[0.6875rem] font-semibold tracking-wide text-ember">
+                          <span className="stat text-xs">
                             {service.number}
                           </span>
-                          <span className="heading-sm text-oxblood transition-transform duration-300 group-hover:translate-x-1">
+                          <span className="heading-sm text-cream transition-transform duration-300 group-hover:translate-x-1">
                             {service.title}
                           </span>
                         </a>
@@ -69,7 +69,7 @@ export default function ServicesPage() {
             <section
               key={service.number}
               id={`service-${service.number}`}
-              className={`section rule scroll-mt-28 ${index % 2 === 1 ? 'bg-sand' : ''}`}
+              className={`section rule scroll-mt-28 ${index % 2 === 1 ? 'block-maroon' : ''}`}
             >
               <div className="shell grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
                 <div className={`lg:col-span-5 ${flipped ? 'lg:order-2 lg:col-start-8' : ''}`}>
@@ -89,20 +89,20 @@ export default function ServicesPage() {
                 <div className={`lg:col-span-6 ${flipped ? 'lg:order-1 lg:col-start-1' : 'lg:col-start-7'}`}>
                   <Reveal>
                     <p className="eyebrow mb-4">{service.number} — Service</p>
-                    <h2 className="display-md mb-6 text-oxblood">{service.title}</h2>
+                    <h2 className="display-md mb-6 text-cream">{service.title}</h2>
                     <p className="body-lg mb-5 max-w-[44ch]">{service.description}</p>
                     <p className="body mb-8 max-w-[46ch]">{service.detail}</p>
                   </Reveal>
 
                   <Reveal delay={0.12}>
-                    <p className="mb-4 font-sans text-[0.625rem] font-semibold uppercase tracking-eyebrow text-oxblood/50">
+                    <p className="mb-4 font-sans text-[0.625rem] font-semibold uppercase tracking-eyebrow text-cream/55">
                       What you get
                     </p>
                     <ul className="flex flex-wrap gap-2">
                       {service.deliverables.map((deliverable) => (
                         <li
                           key={deliverable}
-                          className="border border-oxblood/25 px-3 py-1.5 font-sans text-[0.625rem] uppercase tracking-wide text-oxblood/70"
+                          className="border border-cream/25 px-3 py-1.5 font-sans text-[0.625rem] uppercase tracking-wide text-cream/75"
                         >
                           {deliverable}
                         </li>
@@ -120,7 +120,7 @@ export default function ServicesPage() {
           <div className="shell grid gap-10 md:grid-cols-12 md:items-end">
             <div className="md:col-span-7">
               <p className="eyebrow mb-4">Portfolio</p>
-              <h2 className=" mb-4 text-oxblood">See it applied</h2>
+              <h2 className="display-md mb-4 text-cream">See it applied</h2>
               <p className="body max-w-[44ch]">
                 Every project in the portfolio came out of one or more of these
                 four. Open one to see which.

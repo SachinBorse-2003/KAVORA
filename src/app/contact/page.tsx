@@ -32,7 +32,7 @@ export default function ContactPage() {
           <div className="shell grid gap-10 md:grid-cols-12 md:items-end">
             <div className="md:col-span-6">
               <p className="eyebrow mb-3">Contact</p>
-              <h1 className="display-md max-w-[14ch] text-oxblood">Work with us</h1>
+              <h1 className="display-md max-w-[14ch] text-cream">Work with us</h1>
               <p className="body mt-5 max-w-[44ch]">
                 Pick a time and talk it through, or write it down and we will
                 come back to you within two working days.
@@ -43,16 +43,16 @@ export default function ContactPage() {
               <dl className="rule grid gap-x-8 gap-y-5 pt-6 sm:grid-cols-2">
                 {details.map((detail) => (
                   <div key={detail.label}>
-                    <dt className="mb-1 text-[0.625rem] uppercase tracking-eyebrow text-oxblood/50">
+                    <dt className="mb-1 font-sans text-[0.625rem] uppercase tracking-eyebrow text-cream/55">
                       {detail.label}
                     </dt>
-                    <dd className="text-sm font-light text-oxblood">
+                    <dd className="font-serif text-sm text-cream">
                       {detail.href ? (
                         <a
                           href={detail.href}
                           target={detail.href.startsWith('http') ? '_blank' : undefined}
                           rel={detail.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                          className="transition-colors hover:text-ember"
+                          className="transition-colors hover:text-gold"
                         >
                           {detail.value}
                         </a>
@@ -70,11 +70,11 @@ export default function ContactPage() {
         </section>
 
         {/* Book a call — the calendar lives here, not on the homepage */}
-        <section id="book" className="section rule bg-sand">
+        <section id="book" className="section rule block-maroon">
           <div className="shell grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <p className="eyebrow mb-4">01 — Book a call</p>
-              <h2 className="display-md mb-4 text-oxblood">Grab 30 minutes</h2>
+              <h2 className="display-md mb-4 text-cream">Grab 30 minutes</h2>
               <p className="body">
                 No deck, no pitch. We ask what you are trying to move, and tell
                 you honestly whether we are the right studio for it.
@@ -82,7 +82,8 @@ export default function ContactPage() {
             </div>
 
             <div className="lg:col-span-7 lg:col-start-6">
-              <div className="h-[640px] overflow-hidden border border-oxblood/20 bg-cream">
+              {/* Calendar is themed dark in CalEmbed, so the frame matches the page */}
+              <div className="h-[640px] overflow-hidden border border-gold/40 bg-choco">
                 <CalEmbed />
               </div>
             </div>
@@ -94,7 +95,7 @@ export default function ContactPage() {
           <div className="shell grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <p className="eyebrow mb-4">02 — Or write to us</p>
-              <h2 className="display-md mb-4 text-oxblood">Send the brief</h2>
+              <h2 className="display-md mb-4 text-cream">Send the brief</h2>
               <p className="body">
                 Rough is fine. The more you tell us about what is not working,
                 the more useful the first reply will be.
@@ -108,11 +109,11 @@ export default function ContactPage() {
         </section>
 
         {/* Find us */}
-        <section className="rule">
+        <section className="rule block-maroon">
           <div className="shell grid gap-12 px-6 py-24 md:px-10 md:py-32 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <p className="eyebrow mb-4">03 — Find us</p>
-              <h2 className="display-md mb-4 text-oxblood">The studio</h2>
+              <h2 className="display-md mb-4 text-cream">The studio</h2>
               <p className="body mb-8">{contact.address}</p>
               <p className="body">
                 Not nearby? We travel for shoots when the project covers it, and
@@ -122,7 +123,7 @@ export default function ContactPage() {
 
             <div className="lg:col-span-7 lg:col-start-6">
               {/* TODO: swap mapEmbedUrl in content/site.ts for the exact studio address */}
-              <div className="relative h-[420px] overflow-hidden border border-oxblood/20 grayscale transition-all duration-700 hover:grayscale-0">
+              <div className="relative h-[420px] overflow-hidden border border-gold/40 grayscale transition-all duration-700 hover:grayscale-0">
                 <iframe
                   src={contact.mapEmbedUrl}
                   title="Kavora studio location"

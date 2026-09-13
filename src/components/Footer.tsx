@@ -17,7 +17,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-ink px-6 py-20 text-cream md:px-10">
+    <footer className="border-t border-gold/40 bg-choco px-6 py-20 text-cream md:px-10">
       <div className="shell">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
@@ -28,14 +28,14 @@ export default function Footer() {
               height={249}
               className="mb-8 h-10 w-auto object-contain"
             />
-            <p className="max-w-sm font-sans text-base font-light leading-relaxed text-cream/65">
+            <p className="max-w-sm font-serif text-base leading-relaxed text-cream/70">
               A marketing studio for brands that would rather be recognised than
               merely seen.
             </p>
           </div>
 
           <nav className="md:col-span-2 md:col-start-7">
-            <p className="mb-5 font-sans text-[0.625rem] uppercase tracking-eyebrow text-cream/45">
+            <p className="mb-5 font-sans text-[0.625rem] font-medium uppercase tracking-eyebrow text-cream/55">
               Menu
             </p>
             <ul className="space-y-3">
@@ -43,7 +43,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="font-sans text-sm font-light text-cream/75 transition-colors hover:text-cream"
+                    className="font-sans text-sm text-cream/75 transition-colors hover:text-cream"
                   >
                     {link.label}
                   </Link>
@@ -53,7 +53,7 @@ export default function Footer() {
           </nav>
 
           <div className="md:col-span-2">
-            <p className="mb-5 font-sans text-[0.625rem] uppercase tracking-eyebrow text-cream/45">
+            <p className="mb-5 font-sans text-[0.625rem] font-medium uppercase tracking-eyebrow text-cream/55">
               Follow
             </p>
             <ul className="space-y-3">
@@ -63,7 +63,7 @@ export default function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center gap-3 font-sans text-sm font-light text-cream/75 transition-colors hover:text-cream"
+                    className="group flex items-center gap-3 font-sans text-sm text-cream/75 transition-colors hover:text-cream"
                   >
                     <SocialIcon
                       name={social.icon}
@@ -77,20 +77,20 @@ export default function Footer() {
           </div>
 
           <div className="md:col-span-3">
-            <p className="mb-5 font-sans text-[0.625rem] uppercase tracking-eyebrow text-cream/45">
+            <p className="mb-5 font-sans text-[0.625rem] font-medium uppercase tracking-eyebrow text-cream/55">
               Contact
             </p>
             <a
               href={`mailto:${contact.email}`}
-              className="block break-all font-sans text-sm font-light text-cream/75 transition-colors hover:text-cream"
+              className="block break-all font-sans text-sm text-cream/75 transition-colors hover:text-cream"
             >
               {contact.email}
             </a>
-            <p className="mt-3 font-sans text-sm font-light text-cream/45">{contact.address}</p>
+            <p className="mt-3 font-serif text-sm text-cream/55">{contact.address}</p>
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-3 border-t border-cream/15 pt-8 font-sans text-[0.6875rem] uppercase tracking-wide text-cream/35 md:flex-row md:items-center md:justify-between">
+        <div className="mt-16 flex flex-col gap-3 border-t border-gold/30 pt-8 font-sans text-[0.6875rem] uppercase tracking-wide text-cream/50 md:flex-row md:items-center md:justify-between">
           <p>© {currentYear} Kavora</p>
           <p>All rights reserved</p>
         </div>

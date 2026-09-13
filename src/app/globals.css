@@ -1,37 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap');
-
-/* Display face — the logo's own typeface. Single weight; never synthesise bold. */
-@font-face {
-  font-family: 'Auralux';
-  src: url('/auralux/Auralux.otf') format('opentype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Signature only — used once, on the founder's name */
-@font-face {
-  font-family: 'Gasthony Signature';
-  src: url('/gasthony-signature-font/GasthonySignature-L3Pnn.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
+@import url('https://fonts.googleapis.com/css2?family=Alike&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Poppins:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Brand guideline, Sept 2026: maroon and schokobraun dominate, cream is a
+ * minority surface, gold only for numbers, dividers and small marks.
+ */
 html {
   scroll-behavior: smooth;
-  background-color: #FFF9EE;
+  background-color: #34211B;
 }
 
 body {
-  background-color: #FFF9EE;
-  color: #5F0A0B;
-  font-family: 'Nunito', system-ui, sans-serif;
-  font-weight: 300;
+  background-color: #34211B;
+  color: #FEF8ED;
+  font-family: 'Alike', Georgia, serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -43,8 +28,8 @@ body {
 }
 
 ::selection {
-  background: #5F0A0B;
-  color: #FFF9EE;
+  background: #A67C00;
+  color: #34211B;
 }
 
 ::-webkit-scrollbar {
@@ -52,90 +37,85 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #F6EADB;
+  background: #34211B;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #5F0A0B;
+  background: #610000;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #8E1013;
+  background: #A67C00;
 }
 
 @layer components {
-  /*
-   * Auralux at large sizes with normal weight — "thin" comes from the
-   * typeface's own strokes, so we never bold it and never let the browser
-   * synthesise a heavier cut.
-   */
+  /* Poppins Bold for headlines — never Regular or Light at display size */
   .display {
-    @apply font-display font-normal uppercase leading-[0.9] tracking-display;
-    font-synthesis: none;
+    @apply font-display font-bold leading-[1.05] tracking-display;
   }
 
   .display-xl {
-    @apply display text-[clamp(3rem,11vw,10rem)];
+    @apply display text-[clamp(2.75rem,9vw,8rem)];
   }
 
-  /*
-   * Hero headline. Auralux has a single weight, so "thinner" has to come from
-   * size and tracking rather than font-weight — opening the letter-spacing and
-   * dropping the size is what makes the strokes read light.
-   */
   .display-hero {
-    @apply font-display font-normal uppercase leading-[1.02];
-    font-synthesis: none;
-    font-size: clamp(2rem, 6vw, 5rem);
-    letter-spacing: 0.05em;
+    @apply display;
+    font-size: clamp(2.25rem, 5.5vw, 4.5rem);
   }
 
   .display-lg {
-    @apply display text-[clamp(2.5rem,7vw,6rem)];
+    @apply display text-[clamp(2.25rem,6vw,5rem)];
   }
 
   .display-md {
-    @apply display text-[clamp(1.875rem,4vw,3.5rem)];
+    @apply display text-[clamp(1.75rem,3.5vw,3rem)];
   }
 
-  /* Auralux reads badly below ~24px, so small headings stay in Nunito */
   .heading-sm {
-    @apply font-sans text-xl font-normal leading-snug;
+    @apply font-display text-xl font-semibold leading-snug;
   }
 
+  /* Inter caps, wide tracking, led by a short gold mark. Cream rather than
+     gold for the text itself — gold at this size is under 4.5:1 on both dark
+     surfaces. */
   .eyebrow {
-    @apply font-sans text-[0.6875rem] font-semibold uppercase tracking-eyebrow text-ember;
+    @apply inline-flex items-center gap-3 font-sans text-[0.6875rem] font-medium uppercase tracking-eyebrow text-cream/70
+           before:block before:h-px before:w-6 before:bg-gold before:content-[''];
+  }
+
+  /* Numbers are the hero — monospace, gold, read as data */
+  .stat {
+    @apply font-mono font-medium tracking-tight text-gold;
+  }
+
+  /* Quotes & emphasis */
+  .quote {
+    @apply font-display font-normal italic;
   }
 
   .body-lg {
-    @apply font-sans text-lg font-light leading-relaxed text-oxblood/75 md:text-xl;
+    @apply font-serif text-lg leading-relaxed text-cream/80 md:text-xl;
   }
 
   .body {
-    @apply font-sans text-base font-light leading-relaxed text-oxblood/65;
+    @apply font-serif text-base leading-relaxed text-cream/70;
   }
 
+  /* Thin gold divider */
   .rule {
-    @apply border-t border-oxblood/15;
+    @apply border-t border-gold/40;
   }
 
   .btn-solid {
-    @apply inline-flex items-center justify-center gap-3 bg-oxblood px-8 py-4
-           font-sans text-xs font-semibold uppercase tracking-wide text-cream
-           transition-colors duration-300 hover:bg-ember;
+    @apply inline-flex items-center justify-center gap-3 border border-cream bg-cream px-8 py-4
+           font-sans text-xs font-semibold uppercase tracking-wide text-maroon
+           transition-colors duration-300 hover:bg-transparent hover:text-cream;
   }
 
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-3 border border-oxblood/30 px-8 py-4
-           font-sans text-xs font-semibold uppercase tracking-wide text-oxblood
-           transition-colors duration-300 hover:bg-oxblood hover:text-cream;
-  }
-
-  /* Same buttons, on the dark red blocks */
-  .btn-solid-invert {
-    @apply inline-flex items-center justify-center gap-3 bg-cream px-8 py-4
-           font-sans text-xs font-semibold uppercase tracking-wide text-oxblood
-           transition-colors duration-300 hover:bg-blush;
+    @apply inline-flex items-center justify-center gap-3 border border-cream/30 px-8 py-4
+           font-sans text-xs font-semibold uppercase tracking-wide text-cream
+           transition-colors duration-300 hover:border-cream hover:bg-cream hover:text-maroon;
   }
 
   .section {
@@ -146,9 +126,14 @@ body {
     @apply mx-auto w-full max-w-[1400px];
   }
 
-  /* Dark red punctuation block on the cream page */
-  .block-dark {
-    @apply bg-oxblood text-cream;
+  /* Maroon block on the schokobraun page */
+  .block-maroon {
+    @apply bg-maroon text-cream;
+  }
+
+  /* Cream stays a minority surface — contrast and legibility only */
+  .block-cream {
+    @apply bg-cream text-choco;
   }
 }
 

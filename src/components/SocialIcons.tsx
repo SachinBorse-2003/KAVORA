@@ -2,7 +2,7 @@ import { contact } from '@/content/site'
 
 /**
  * Line-art social marks — transparent, no fills, drawn in `currentColor` so the
- * same icon works on cream and on the dark red blocks. Feather icon paths.
+ * same icon works on the dark surfaces and on cream. Feather icon paths.
  */
 const paths: Record<string, JSX.Element> = {
   instagram: (
@@ -46,11 +46,11 @@ export function SocialIcon({ name, className }: { name: string; className?: stri
 }
 
 /**
- * Row of icon links. `tone` picks the palette: cream backgrounds use oxblood
- * ink, dark blocks invert it.
+ * Row of icon links. `tone` picks the palette: `dark` for the schokobraun and
+ * maroon surfaces (the default), `light` for cream.
  */
 export default function SocialLinks({
-  tone = 'light',
+  tone = 'dark',
   variant = 'box',
   className,
 }: {
@@ -61,11 +61,11 @@ export default function SocialLinks({
 }) {
   const box =
     tone === 'dark'
-      ? 'border-cream/25 text-cream/70 hover:border-cream hover:bg-cream hover:text-oxblood'
-      : 'border-oxblood/25 text-oxblood/70 hover:border-oxblood hover:bg-oxblood hover:text-cream'
+      ? 'border-cream/25 text-cream/70 hover:border-cream hover:bg-cream hover:text-maroon'
+      : 'border-maroon/25 text-maroon/80 hover:border-maroon hover:bg-maroon hover:text-cream'
 
   const bare =
-    tone === 'dark' ? 'text-cream/60 hover:text-cream' : 'text-oxblood/55 hover:text-oxblood'
+    tone === 'dark' ? 'text-cream/60 hover:text-cream' : 'text-maroon/70 hover:text-maroon'
 
   return (
     <ul className={`flex items-center ${variant === 'box' ? 'gap-3' : 'gap-4'} ${className ?? ''}`}>

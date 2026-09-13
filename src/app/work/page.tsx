@@ -46,10 +46,10 @@ export default function WorkPage() {
               <dl className="grid grid-cols-3 gap-6 md:col-span-5 md:col-start-8 md:items-end">
                 {stats.map((stat, index) => (
                   <Reveal key={stat.label} delay={0.1 + index * 0.08}>
-                    <dt className="mb-2 font-sans text-[0.625rem] uppercase tracking-eyebrow text-oxblood/50">
+                    <dt className="mb-2 font-sans text-[0.625rem] uppercase tracking-eyebrow text-cream/55">
                       {stat.label}
                     </dt>
-                    <dd className="font-display text-2xl uppercase tracking-display text-oxblood md:text-3xl">
+                    <dd className="stat text-2xl md:text-3xl">
                       {stat.value}
                     </dd>
                   </Reveal>
@@ -60,7 +60,7 @@ export default function WorkPage() {
         </section>
 
         {/* The portfolio */}
-        <section className="section rule bg-sand">
+        <section className="section rule block-maroon">
           <div className="shell">
             <WorkGrid />
           </div>
@@ -71,7 +71,7 @@ export default function WorkPage() {
           <div className="shell grid gap-10 md:grid-cols-12 md:items-end">
             <div className="md:col-span-6">
               <p className="eyebrow mb-4">Our services</p>
-              <h2 className="display-md mb-4 text-oxblood">
+              <h2 className="display-md mb-4 text-cream">
                 Looking for what we actually do?
               </h2>
               <p className="body max-w-[42ch]">
@@ -85,12 +85,12 @@ export default function WorkPage() {
                 {services.map((service) => (
                   <li
                     key={service.number}
-                    className="flex items-baseline gap-5 border-b border-oxblood/15 py-4"
+                    className="flex items-baseline gap-5 border-b border-cream/15 py-4"
                   >
-                    <span className="font-sans text-[0.6875rem] font-semibold tracking-wide text-ember">
+                    <span className="stat text-xs">
                       {service.number}
                     </span>
-                    <span className="heading-sm text-oxblood">{service.title}</span>
+                    <span className="heading-sm text-cream">{service.title}</span>
                   </li>
                 ))}
               </ul>

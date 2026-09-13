@@ -45,9 +45,9 @@ export default function Hero() {
             Kavora — Marketing Studio
           </motion.p>
 
-          {/* Slightly tighter clamp than .display-hero — the headline now lives
-              in a half-width column, so it has to break at the same three lines. */}
-          <h1 className="display-hero text-[clamp(2.875rem,4.5vw,4.5rem)] text-oxblood">
+          {/* Slightly tighter clamp than .display-hero — the headline lives in a
+              half-width column, so it has to break at the same three lines. */}
+          <h1 className="display-hero text-[clamp(2.5rem,4.25vw,4.25rem)] text-cream">
             {['Brands that', 'refuse to'].map((line, index) => (
               <span key={line} className="block overflow-hidden">
                 <motion.span
@@ -67,7 +67,8 @@ export default function Hero() {
               <AnimatePresence mode="wait" initial={false}>
                 <motion.span
                   key={endings[endingIndex]}
-                  className="block text-ember"
+                  // Poppins Italic is the brand's emphasis voice
+                  className="block italic font-semibold text-cream/75"
                   initial={{ y: '105%' }}
                   animate={{ y: 0 }}
                   exit={{ y: '-105%' }}
@@ -96,10 +97,10 @@ export default function Hero() {
               </Link>
               <Link
                 href="/work"
-                className="group flex items-center gap-3 font-sans text-xs font-semibold uppercase tracking-wide text-oxblood/60 transition-colors hover:text-oxblood"
+                className="group flex items-center gap-3 font-sans text-xs font-semibold uppercase tracking-wide text-cream/70 transition-colors hover:text-cream"
               >
                 Watch our work
-                <span className="h-px w-8 bg-oxblood/40 transition-all duration-300 group-hover:w-12 group-hover:bg-ember" />
+                <span className="h-px w-8 bg-gold/60 transition-all duration-300 group-hover:w-12 group-hover:bg-gold" />
               </Link>
             </div>
           </motion.div>

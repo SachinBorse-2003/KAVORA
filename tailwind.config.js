@@ -7,25 +7,22 @@ module.exports = {
   ],
   theme: {
     extend: {
+      // The whole palette — Kavora brand guideline, Sept 2026. "No other core
+      // colors": vary opacity, never add a tint.
       colors: {
-        // Brand pair from Kavora
-        cream: '#FFF9EE',   // primary surface
-        oxblood: '#5F0A0B', // brand red — type, dark blocks
-
-        // Derived from the pair, for depth
-        sand: '#F6EADB',    // subtle panel on cream
-        ember: '#8E1013',   // accent: hover, live indicators
-        ink: '#2A0405',     // deepest, footer
-        blush: '#EFD2C2',
+        maroon: '#610000', // authority surface, blocks
+        choco: '#34211B',  // schokobraun — default page surface
+        cream: '#FEF8ED',  // type on dark; minority surface for contrast
+        gold: '#A67C00',   // numbers, guarantees, thin dividers, small marks — never large fills
       },
       fontFamily: {
-        // Auralux for display, Nunito for everything read as text
-        display: ['Auralux', 'Georgia', 'serif'],
-        sans: ['Nunito', 'system-ui', 'sans-serif'],
-        gasthony: ['Gasthony Signature', 'cursive'],
+        display: ['Poppins', 'system-ui', 'sans-serif'],                // headlines, Bold/SemiBold; Italic for quotes
+        serif: ['Alike', 'Georgia', 'serif'],                           // all body copy
+        sans: ['Inter', 'system-ui', 'sans-serif'],                     // labels, tags, UI
+        mono: ['JetBrains Mono', 'ui-monospace', 'Menlo', 'monospace'], // numbers & stats
       },
       letterSpacing: {
-        display: '0.01em',
+        display: '-0.02em',
         eyebrow: '0.35em',
         wide: '0.18em',
       },

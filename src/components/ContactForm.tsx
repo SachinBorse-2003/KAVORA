@@ -42,19 +42,19 @@ export default function ContactForm() {
   }
 
   const fieldClass =
-    'w-full border-b border-oxblood/25 bg-transparent py-3 font-sans text-sm font-light text-oxblood outline-none transition-colors placeholder:text-oxblood/35 focus:border-ember'
+    'w-full border-b border-cream/25 bg-transparent py-3 font-serif text-base text-cream outline-none transition-colors placeholder:text-cream/40 focus:border-gold'
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
       <div className="grid gap-8 sm:grid-cols-2">
         <div>
-          <label htmlFor="name" className="mb-2 block text-[0.625rem] uppercase tracking-eyebrow text-oxblood/50">
+          <label htmlFor="name" className="mb-2 block font-sans text-[0.625rem] uppercase tracking-eyebrow text-cream/55">
             Your name
           </label>
           <input id="name" name="name" type="text" required placeholder="Jane Doe" className={fieldClass} />
         </div>
         <div>
-          <label htmlFor="brand" className="mb-2 block text-[0.625rem] uppercase tracking-eyebrow text-oxblood/50">
+          <label htmlFor="brand" className="mb-2 block font-sans text-[0.625rem] uppercase tracking-eyebrow text-cream/55">
             Brand
           </label>
           <input id="brand" name="brand" type="text" placeholder="Company or handle" className={fieldClass} />
@@ -62,19 +62,19 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="email" className="mb-2 block text-[0.625rem] uppercase tracking-eyebrow text-oxblood/50">
+        <label htmlFor="email" className="mb-2 block font-sans text-[0.625rem] uppercase tracking-eyebrow text-cream/55">
           Email
         </label>
         <input id="email" name="email" type="email" required placeholder="you@company.com" className={fieldClass} />
       </div>
 
       <div>
-        <label htmlFor="service" className="mb-2 block text-[0.625rem] uppercase tracking-eyebrow text-oxblood/50">
+        <label htmlFor="service" className="mb-2 block font-sans text-[0.625rem] uppercase tracking-eyebrow text-cream/55">
           What do you need
         </label>
         <select id="service" name="service" defaultValue={services[0]} className={`${fieldClass} appearance-none`}>
           {services.map((service) => (
-            <option key={service} value={service} className="bg-cream text-oxblood">
+            <option key={service} value={service} className="bg-choco text-cream">
               {service}
             </option>
           ))}
@@ -82,7 +82,7 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="message" className="mb-2 block text-[0.625rem] uppercase tracking-eyebrow text-oxblood/50">
+        <label htmlFor="message" className="mb-2 block font-sans text-[0.625rem] uppercase tracking-eyebrow text-cream/55">
           What is not working right now
         </label>
         <textarea
@@ -100,9 +100,9 @@ export default function ContactForm() {
           Send enquiry
         </button>
         {submitted && (
-          <p className="text-xs font-light text-oxblood/60" role="status">
+          <p className="font-serif text-sm text-cream/70" role="status">
             Your mail app should be open. If not, write to{' '}
-            <a href={`mailto:${contact.email}`} className="text-ember underline">
+            <a href={`mailto:${contact.email}`} className="text-cream underline decoration-gold">
               {contact.email}
             </a>
             .

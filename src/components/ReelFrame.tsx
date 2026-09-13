@@ -25,7 +25,7 @@ export default function ReelFrame({
         href={reelUrl(reel.shortcode)}
         target="_blank"
         rel="noopener noreferrer"
-        className="group/reel absolute inset-0 block bg-ink"
+        className="group/reel absolute inset-0 block bg-choco"
         aria-label={reel.label ? `${reel.label} — watch on Instagram` : 'Watch reel on Instagram'}
       >
         {reel.video ? (
@@ -49,7 +49,7 @@ export default function ReelFrame({
           />
         )}
 
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/85 via-transparent to-ink/25" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-choco/85 via-transparent to-choco/25" />
 
         {/* Play affordance — the cover is a still, so it has to say so */}
         {!reel.video && (
@@ -61,7 +61,7 @@ export default function ReelFrame({
         )}
 
         <span className="absolute inset-x-0 bottom-0 z-20 flex items-center gap-2 p-3 pb-5 font-sans text-[0.5625rem] font-semibold uppercase tracking-eyebrow text-cream/80 transition-colors group-hover/reel:text-cream">
-          <span className="inline-block h-1.5 w-1.5 shrink-0 animate-pulse-dot rounded-full bg-ember" />
+          <span className="inline-block h-1.5 w-1.5 shrink-0 animate-pulse-dot rounded-full bg-gold" />
           {reel.label ?? 'Watch on Instagram'}
         </span>
       </a>

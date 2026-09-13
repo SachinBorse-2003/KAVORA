@@ -32,7 +32,7 @@ export function Reveal({
 
 /**
  * Splits a string on spaces and wipes each word up from behind a mask.
- * Used for the big Auralux headlines — the reveal is what makes them land.
+ * Used for the big Poppins headlines — the reveal is what makes them land.
  */
 export function MaskText({
   text,
@@ -113,7 +113,7 @@ export function DrawRule({ className }: { className?: string }) {
       whileInView={{ scaleX: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 1, ease: EASE }}
-      className={`h-px origin-left bg-oxblood/20 ${className ?? ''}`}
+      className={`h-px origin-left bg-gold/40 ${className ?? ''}`}
     />
   )
 }

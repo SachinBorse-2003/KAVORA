@@ -16,13 +16,24 @@ export default function CalEmbed() {
       // different embed instance and the theming silently does nothing.
       const cal = await getCalApi({ namespace: contact.calNamespace })
       cal('ui', {
-        theme: 'light',
+        // Dark, to sit on the schokobraun/maroon page. Cal's own dark greys are
+        // swapped for the palette.
+        theme: 'dark',
         cssVarsPerTheme: {
           light: {
-            'cal-brand': '#5F0A0B', // oxblood
+            'cal-brand': '#610000', // maroon
           },
           dark: {
-            'cal-brand': '#8E1013', // ember
+            'cal-brand': '#A67C00', // gold
+            'cal-brand-text': '#34211B',
+            'cal-bg': '#34211B',
+            'cal-bg-muted': '#34211B',
+            'cal-bg-subtle': '#610000',
+            'cal-bg-emphasis': '#610000',
+            'cal-text': '#FEF8ED',
+            'cal-text-emphasis': '#FEF8ED',
+            'cal-border': 'rgba(166, 124, 0, 0.4)',
+            'cal-border-subtle': 'rgba(254, 248, 237, 0.15)',
           },
         },
         hideEventTypeDetails: false,
