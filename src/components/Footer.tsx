@@ -92,6 +92,18 @@ export default function Footer() {
 
         <div className="mt-16 flex flex-col gap-3 border-t border-gold/30 pt-8 font-sans text-[0.6875rem] uppercase tracking-wide text-cream/50 md:flex-row md:items-center md:justify-between">
           <p>© {currentYear} Kavora</p>
+          {/* Attribution is a condition of Skiper UI's free components */}
+          <p>
+            Motion components by{' '}
+            <a
+              href="https://skiper-ui.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-gold/50 underline-offset-4 transition-colors hover:text-cream"
+            >
+              Skiper UI
+            </a>
+          </p>
           <p>All rights reserved</p>
         </div>
       </div>

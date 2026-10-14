@@ -7,6 +7,7 @@ import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion'
 
 import { contact } from '@/content/site'
 import SocialLinks from '@/components/SocialIcons'
+import { TextRoll } from '@/components/ui/skiper-ui/skiper58'
 
 type NavLink = { label: string; href: string }
 type NavItem = NavLink & { children?: NavLink[] }
@@ -92,7 +93,7 @@ export default function Navigation() {
                 // which is why the panel is a sibling of the trigger, not a portal.
                 <div key={link.label} className="group relative">
                   <span className="relative flex cursor-default items-center gap-2 font-sans text-xs font-semibold uppercase tracking-wide text-cream/70 transition-colors group-hover:text-cream group-focus-within:text-cream">
-                    {link.label}
+                    <TextRoll lineHeight={1.15}>{link.label}</TextRoll>
                     <svg
                       aria-hidden
                       viewBox="0 0 10 6"
@@ -138,7 +139,7 @@ export default function Navigation() {
                   href={link.href}
                   className="group relative font-sans text-xs font-semibold uppercase tracking-wide text-cream/70 transition-colors hover:text-cream"
                 >
-                  {link.label}
+                  <TextRoll lineHeight={1.15}>{link.label}</TextRoll>
                   <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-gold transition-all duration-300 group-hover:w-full" />
                 </Link>
               ),

@@ -2,11 +2,12 @@
 
 import { motion } from 'framer-motion'
 import { Reveal, MaskText } from '@/components/Motion'
+import { Skiper16 } from '@/components/ui/skiper-ui/skiper16'
 import { differentiators } from '@/content/site'
 
 export default function WhyKavora() {
   return (
-    <section className="block-maroon section relative overflow-hidden">
+    <section className="block-maroon section relative overflow-clip">
       {/* Oversized wordmark bleeding off the edge, slowly drifting */}
       <motion.p
         aria-hidden
@@ -33,31 +34,27 @@ export default function WhyKavora() {
           </Reveal>
         </div>
 
-        <div className="grid gap-px bg-gold/40 md:grid-cols-3">
-          {differentiators.map((item, index) => (
-            <motion.div
+        {/* Skiper UI sticky card stack: each reason pins and the next slides
+            over it, the ones underneath easing back as you scroll */}
+        <Skiper16
+          cardClassName="max-w-5xl border border-gold/40 bg-choco"
+          items={differentiators.map((item) => (
+            <div
               key={item.number}
-              initial={{ opacity: 0, y: 26 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.7, delay: index * 0.12 }}
-              className="group relative overflow-hidden bg-maroon p-8 md:p-10"
+              className="grid h-[24rem] content-between gap-8 p-8 md:h-[22rem] md:grid-cols-12 md:content-stretch md:p-14"
             >
-              <span className="absolute inset-0 origin-bottom scale-y-0 bg-choco transition-transform duration-500 ease-out group-hover:scale-y-100" />
-              <div className="relative">
-                <p className="stat mb-8 text-sm">
-                  {item.number}
-                </p>
-                <h3 className="mb-4 font-display text-2xl font-semibold leading-tight tracking-display text-cream md:text-3xl">
+              <p className="stat text-5xl md:col-span-3 md:text-7xl">{item.number}</p>
+              <div className="md:col-span-8 md:col-start-5 md:self-end">
+                <h3 className="mb-5 font-display text-3xl font-semibold leading-tight tracking-display text-cream md:text-5xl">
                   {item.title}
                 </h3>
-                <p className="font-serif text-base leading-relaxed text-cream/75">
+                <p className="max-w-[48ch] font-serif text-base leading-relaxed text-cream/75 md:text-lg">
                   {item.description}
                 </p>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </div>
+        />
       </div>
     </section>
   )

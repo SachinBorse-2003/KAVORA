@@ -27,6 +27,11 @@ body {
   box-sizing: border-box;
 }
 
+/* Intro loader only paints on a visit the head script marked to play */
+html:not([data-intro='play']) .intro-loader {
+  display: none;
+}
+
 ::selection {
   background: #A67C00;
   color: #34211B;

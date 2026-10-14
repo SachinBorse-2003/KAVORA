@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import SmoothScroll from '@/components/ui/smooth-scroll'
+import { introScript } from '@/lib/intro'
 
 export const metadata: Metadata = {
   title: 'Kavora | Creative Content & Growth Agency',
@@ -17,9 +19,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    // The intro script sets data-intro on <html> before hydration
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: introScript }} />
+      </head>
       <body className="bg-choco font-serif text-cream antialiased">
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   )

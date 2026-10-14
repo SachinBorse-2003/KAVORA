@@ -1,9 +1,11 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { FlipFadeText } from '@/components/ui/flip-fade-text'
+import { introDelay } from '@/lib/intro'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
@@ -18,15 +20,9 @@ export default function Hero() {
   const textOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0])
   const imageY = useTransform(scrollYProgress, [0, 1], [0, 80])
 
-  const [endingIndex, setEndingIndex] = useState(0)
-
-  useEffect(() => {
-    // Honour reduced-motion: hold the first phrase instead of cycling
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-
-    const words = setInterval(() => setEndingIndex((i) => (i + 1) % endings.length), 2600)
-    return () => clearInterval(words)
-  }, [])
+  // On the session's first visit the intro loader covers the hero, so the
+  // entrance waits for it instead of playing underneath
+  const [hold] = useState(introDelay)
 
   return (
     <section
@@ -39,7 +35,7 @@ export default function Hero() {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
+            transition={{ duration: 0.8, delay: hold + 0.1 }}
             className="eyebrow mb-10"
           >
             Kavora — Marketing Studio
@@ -54,36 +50,31 @@ export default function Hero() {
                   className="block"
                   initial={{ y: '105%' }}
                   animate={{ y: 0 }}
-                  transition={{ duration: 1.1, delay: 0.2 + index * 0.12, ease: EASE }}
+                  transition={{ duration: 1.1, delay: hold + 0.2 + index * 0.12, ease: EASE }}
                 >
                   {line}
                 </motion.span>
               </span>
             ))}
 
-            {/* Rotating final line. Fixed height so nothing below it jumps —
-                slightly taller than the line box so glyphs don't clip. */}
-            <span className="relative block h-[1.18em] overflow-hidden">
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.span
-                  key={endings[endingIndex]}
-                  // Poppins Italic is the brand's emphasis voice
-                  className="block italic font-semibold text-cream/75"
-                  initial={{ y: '105%' }}
-                  animate={{ y: 0 }}
-                  exit={{ y: '-105%' }}
-                  transition={{ duration: 0.75, ease: EASE }}
-                >
-                  {endings[endingIndex]}
-                </motion.span>
-              </AnimatePresence>
-            </span>
+            {/* Rotating final line — Vengeance UI flip-fade, letters flip in on
+                X. Fixed height so nothing below it jumps; no overflow clip, the
+                flip travels a little outside the line box. */}
+            <FlipFadeText
+              words={endings}
+              interval={2800}
+              letterDuration={0.5}
+              staggerDelay={0.035}
+              exitStaggerDelay={0.02}
+              className="block h-[1.18em] min-h-0 justify-start"
+              textClassName="gap-0 text-[1em] md:text-[1em] font-semibold italic normal-case tracking-display text-cream/75 dark:text-cream/75"
+            />
           </h1>
 
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.75, ease: EASE }}
+            transition={{ duration: 0.9, delay: hold + 0.75, ease: EASE }}
             className="mt-10"
           >
             <p className="body-lg max-w-[44ch]">
@@ -112,7 +103,7 @@ export default function Hero() {
           <motion.div
             initial={{ clipPath: 'inset(100% 0 0 0)' }}
             animate={{ clipPath: 'inset(0% 0 0 0)' }}
-            transition={{ duration: 1.3, delay: 0.5, ease: EASE }}
+            transition={{ duration: 1.3, delay: hold + 0.5, ease: EASE }}
             className="overflow-hidden"
           >
             <motion.div

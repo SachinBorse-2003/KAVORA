@@ -2,11 +2,14 @@
 
 import Image from 'next/image'
 import { Reveal, MaskText, ParallaxImage } from '@/components/Motion'
+import StatsCounter from '@/components/ui/stats-counter'
 
+// Counted up on scroll (Vengeance UI stats counter). `prefix` holds the
+// leading zero so "01" keeps its two-digit mono look.
 const stats = [
-  { value: '360°', label: 'Strategy through distribution' },
-  { value: '01', label: 'Team across the whole pipeline' },
-  { value: '18+', label: 'Months refining the system' },
+  { value: 360, prefix: '', suffix: '°', label: 'Strategy through distribution' },
+  { value: 1, prefix: '0', suffix: '', label: 'Team across the whole pipeline' },
+  { value: 18, prefix: '', suffix: '+', label: 'Months refining the system' },
 ]
 
 export default function AboutUs() {
@@ -51,9 +54,14 @@ export default function AboutUs() {
 
             <div className="rule grid grid-cols-1 gap-8 pt-10 sm:grid-cols-3">
               {stats.map((stat, index) => (
-                <Reveal key={stat.value} delay={index * 0.1}>
+                <Reveal key={stat.label} delay={index * 0.1}>
                   <p className="stat mb-2 text-4xl md:text-5xl">
-                    {stat.value}
+                    <StatsCounter
+                      value={stat.value}
+                      prefix={stat.prefix}
+                      suffix={stat.suffix}
+                      duration={1.8}
+                    />
                   </p>
                   <p className="font-sans text-[0.6875rem] uppercase tracking-wide text-cream/55">
                     {stat.label}
